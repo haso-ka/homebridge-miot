@@ -57,7 +57,7 @@ function createHarness(storagePath, options = {}) {
 
 async function expectedStorage(harness, storagePath) {
   const device = harness.config.devices[0];
-  const uuidSeed = device.token + device.ip + device.deviceId + 'miot';
+  const uuidSeed = device.token + device.ip + device.deviceId + 'miot-hsk';
   const uuid = crypto.createHash('sha1').update(uuidSeed + ':matter').digest('hex');
   const storageId = plugin.getExternalMatterStorageId(uuid);
   const storageDir = path.join(storagePath, 'matter', storageId);
@@ -76,8 +76,8 @@ test('keeps external Matter storage during a normal restart', async t => {
   const expected = await expectedStorage(harness, storagePath);
   await fs.writeFile(path.join(expected.storageDir, 'accessories.json'), JSON.stringify([{
     UUID: expected.uuid,
-    plugin: 'homebridge-miot',
-    context: { plugin: 'homebridge-miot', deviceType: 'RobotCleaner' }
+    plugin: 'homebridge-miot-hsk',
+    context: { plugin: 'homebridge-miot-hsk', deviceType: 'RobotCleaner' }
   }]));
 
   await harness.platform.quarantineStaleExternalMatterStorage();
@@ -90,13 +90,13 @@ test('keeps external Matter storage of a device with a stableId after its token 
   const storagePath = await fs.mkdtemp(path.join(os.tmpdir(), 'miot-matter-test-'));
   t.after(() => fs.rm(storagePath, { recursive: true, force: true }));
   const harness = createHarness(storagePath, { device: { token: 'new-token', stableId: 'robot-1' } });
-  const uuid = crypto.createHash('sha1').update('stableId:robot-1miot:matter').digest('hex');
+  const uuid = crypto.createHash('sha1').update('stableId:robot-1miot-hsk:matter').digest('hex');
   const storageDir = path.join(storagePath, 'matter', plugin.getExternalMatterStorageId(uuid));
   await fs.mkdir(storageDir, { recursive: true });
   await fs.writeFile(path.join(storageDir, 'accessories.json'), JSON.stringify([{
     UUID: uuid,
-    plugin: 'homebridge-miot',
-    context: { plugin: 'homebridge-miot', deviceType: 'RobotCleaner' }
+    plugin: 'homebridge-miot-hsk',
+    context: { plugin: 'homebridge-miot-hsk', deviceType: 'RobotCleaner' }
   }]));
 
   await harness.platform.quarantineStaleExternalMatterStorage();

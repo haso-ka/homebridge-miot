@@ -169,7 +169,7 @@ class UiServer extends HomebridgePluginUiServer {
     try {
       const configPath = this.homebridgeConfigPath || this.homebridgeStoragePath + '/config.json';
       const config = JSON.parse(await fs.readFile(configPath, 'utf8'));
-      const platform = Array.isArray(config.platforms) ? config.platforms.find(item => item && item.platform === 'miot') : null;
+      const platform = Array.isArray(config.platforms) ? config.platforms.find(item => item && item.platform === 'miot-hsk') : null;
       const childBridge = platform && platform._bridge;
       const scope = childBridge ? 'plugin child bridge' : 'main bridge';
       const matterConfig = childBridge ? childBridge.matter : config.bridge && config.bridge.matter;

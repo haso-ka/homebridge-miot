@@ -1,6 +1,6 @@
 {
-  "name": "homebridge-miot",
-  "displayName": "Homebridge Miot",
+  "name": "homebridge-miot-hsk",
+  "displayName": "Homebridge Miot Hsk",
   "version": "2.1.0",
   "description": "Homebridge plugin for devices supporting the miot protocol",
   "main": "index.js",
@@ -71,6 +71,6 @@
   },
   "homepage": "https://github.com/merdok/homebridge-miot#readme",
   "bin": {
-    "miot": "./cli/index.js"
+    "miot-hsk": "./cli/index.js"
   }
 }

@@ -15,8 +15,8 @@ const {
 
 let Service, Characteristic, Homebridge, Accessory;
 
-const PLUGIN_NAME = 'homebridge-miot';
-const PLATFORM_NAME = 'miot';
+const PLUGIN_NAME = 'homebridge-miot-hsk';
+const PLATFORM_NAME = 'miot-hsk';
 const PLUGIN_VERSION = '2.1.0';
 const MATTER_MODE_AUTO = 'auto';
 const MATTER_MODE_HAP = 'hap';

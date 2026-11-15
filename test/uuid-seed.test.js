@@ -20,9 +20,9 @@ function findFieldset(items, title) {
 }
 
 test('keeps the legacy seed when no stable id is set', () => {
-  assert.equal(getUuidSeed(device), 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa192.168.1.10123456miot');
-  assert.equal(getUuidSeed({ ...device, deviceId: undefined }), 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa192.168.1.10miot');
-  assert.equal(getUuidSeed({ ...device, deviceId: '' }), 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa192.168.1.10miot');
+  assert.equal(getUuidSeed(device), 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa192.168.1.10123456miot-hsk');
+  assert.equal(getUuidSeed({ ...device, deviceId: undefined }), 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa192.168.1.10miot-hsk');
+  assert.equal(getUuidSeed({ ...device, deviceId: '' }), 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa192.168.1.10miot-hsk');
 });
 
 test('ignores a blank stable id', () => {
@@ -33,7 +33,7 @@ test('a stable id survives a new token, ip and device id', () => {
   const before = getUuidSeed({ ...device, stableId: 'AA:BB:CC:DD:EE:FF' });
   const after = getUuidSeed({ ip: '192.168.1.20', token: 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', deviceId: '654321', stableId: ' AA:BB:CC:DD:EE:FF ' });
   assert.equal(after, before);
-  assert.equal(before, 'stableId:aa:bb:cc:dd:ee:ffmiot');
+  assert.equal(before, 'stableId:aa:bb:cc:dd:ee:ffmiot-hsk');
 });
 
 test('accepts a numeric stable id from a hand-edited config', () => {

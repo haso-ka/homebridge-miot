@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "miot",
+  "pluginAlias": "miot-hsk",
   "pluginType": "platform",
   "singular": true,
   "customUi": true,
